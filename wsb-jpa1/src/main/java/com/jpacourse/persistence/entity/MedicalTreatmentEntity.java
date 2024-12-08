@@ -2,18 +2,18 @@ package com.jpacourse.persistence.entity;
 
 import com.jpacourse.persistence.enums.TreatmentType;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "MEDICAL_TREATMENT")
 public class MedicalTreatmentEntity {
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "MEDICAL_TREATMENT_ID")
+	private List<VisitEntity> visits;
+	public List<VisitEntity> getVisits(){return visits;}
+	public void setVisits(List<VisitEntity> visits){this.visits=visits;}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

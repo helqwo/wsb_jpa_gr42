@@ -1,17 +1,24 @@
 package com.jpacourse.persistence.entity;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "VISIT")
 public class VisitEntity {
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	private PatientEntity patient;
+	public PatientEntity getPatient(){return patient;}
+	public void setPatient(PatientEntity patient){this.patient=patient;}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "DOCTOR_ID")
+	private DoctorEntity doctor;
+	public DoctorEntity getDoctor(){return doctor;}
+	public void setDoctor(DoctorEntity doctor){this.doctor=doctor;}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
