@@ -1,6 +1,7 @@
 package com.jpacourse.persistence.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -103,8 +104,16 @@ public class PatientEntity {
 	public boolean getHasAllergy() {
 		return hasAllergy;
 	}
+	public PatientEntity() {
+		this.visits = new ArrayList<>();
+	}
 
 	public void setHasAllergy(boolean hasAllergy) {
 		this.hasAllergy = hasAllergy;
+	}
+
+	public void addVisit(VisitEntity visit) {
+		visits.add(visit);
+		visit.setPatient(this);
 	}
 }
