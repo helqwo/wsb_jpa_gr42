@@ -26,39 +26,6 @@ public class PatientDTest {
     @Autowired
     private EntityManager entityManager;
 
-
-//    @Test
-//    public void testAddVisitToPatient() {
-//        // Arrange
-//        PatientEntity patient = new PatientEntity();
-//        patient.setFirstName("John");
-//        patient.setLastName("Doe");
-//        patient.setHasAllergy(false);
-//        patient.setDateOfBirth(LocalDate.of(1990, 1, 1));
-//        patient.setPatientNumber("sadsadasda");
-//        patient.setTelephoneNumber("sdasdadada");
-//        entityManager.persist(patient);
-//        entityManager.flush();
-//
-//        Long doctorId = 1L;
-//        LocalDateTime visitDate = LocalDateTime.now();
-//        String description = "Routine checkup";
-//
-//        // Act
-//        patientDao.addVisitToPatient(patient.getId(), doctorId, visitDate, description);
-//
-//        // Assert
-//        PatientEntity updatedPatient = entityManager.find(PatientEntity.class, patient.getId());
-//        assertNotNull(updatedPatient);
-//        assertEquals(1, updatedPatient.getVisits().size());
-//
-//        VisitEntity visit = updatedPatient.getVisits().get(0);
-//        assertEquals(doctorId, visit.getDoctor());
-//        assertEquals(visitDate, visit.getTime());
-//        assertEquals(description, visit.getDescription());
-//        assertEquals(updatedPatient, visit.getPatient());
-//    }
-
     @Test
     public void testAddVisitToPatient() {
         // given
