@@ -8,6 +8,17 @@ import javax.persistence.*;
 @Table(name = "VISIT")
 public class VisitEntity {
 
+	@Version
+	private Integer version;
+
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+
+	public Integer getVersion() {
+		return version;
+	}
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "DOCTOR_ID", insertable = false, updatable = false)
 	private DoctorEntity doctor;

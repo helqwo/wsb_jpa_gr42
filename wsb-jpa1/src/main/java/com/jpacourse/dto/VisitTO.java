@@ -1,5 +1,7 @@
 package com.jpacourse.dto;
 
+import org.springframework.data.annotation.Version;
+
 import java.time.LocalDateTime;
 
 public class VisitTO {
@@ -9,6 +11,15 @@ public class VisitTO {
     private String description;
 
     private LocalDateTime time;
+    private Integer version;
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
 
     private VisitToDoctorTO visitToDoctor;
 

@@ -14,6 +14,7 @@ public class VisitMapper {
         visitTO.setId(visitEntity.getId());
         visitTO.setDescription(visitEntity.getDescription());
         visitTO.setTime(visitEntity.getTime());
+        visitTO.setVersion(visitEntity.getVersion());
 
         return visitTO;
     }
@@ -28,6 +29,7 @@ public class VisitMapper {
         visitEntity.setId(visitTO.getId());
         visitEntity.setDescription(visitTO.getDescription());
         visitEntity.setTime(visitTO.getTime());
+        visitEntity.setVersion(visitTO.getVersion());
 
 
         return visitEntity;

@@ -2,15 +2,11 @@ package com.jpacourse.persistence.dao;
 
 import com.jpacourse.dto.PatientTO;
 import com.jpacourse.dto.VisitTO;
-import com.jpacourse.persistence.dao.PatientDao;
-
 import com.jpacourse.persistence.entity.DoctorEntity;
 import com.jpacourse.persistence.entity.PatientEntity;
 import com.jpacourse.persistence.entity.VisitEntity;
 import com.jpacourse.persistence.enums.Specialization;
-import com.jpacourse.persistence.enums.TreatmentType;
 import com.jpacourse.service.PatientService;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.junit.jupiter.api.Assertions.*;

@@ -19,23 +19,23 @@ insert into patient (id, first_name, last_name, telephone_number, email, patient
             values (1, 'Monika', 'Szatan', '555-111-333', 'satan@dzimail.com', '1', '2000-01-02', 1,false),
                    (2, 'Valerie', 'Bonbon', '123-123-123', 'bonbon@dzimail', '2', '2010-09-09', 2,false),
                    (3, 'Andrew', 'Stolica', '123-123-123', 'stolica@dzimail', '3', '2010-09-09', 3,false),
-                   (4, 'Lara', 'Pilka', '123-123-123', 'pilka@dzimail', '4', '2010-09-09', 4,false),
-                   (5, 'Pablo', 'Mescal', '123-123-123', 'crazy@dzimail', '5', '2010-09-09', 5,false),
-                   (6, 'Madonna', 'Efdwa', '123-123-123', 'city@dzimail', '6', '2010-09-09', 6,false);
+                   (4, 'Lara', 'Pilka', '123-123-123', 'pilka@dzimail', '4', '2010-09-09', 4,true),
+                   (5, 'Pablo', 'Mescal', '123-123-123', 'crazy@dzimail', '5', '2010-09-09', 5,true),
+                   (6, 'Madonna', 'Efdwa', '123-123-123', 'city@dzimail', '6', '1900-09-09', 6,false);
 
 insert into MEDICAL_TREATMENT (id, description, type)
             values (1, 'use the rtg', 'RTG'),
                    (2, 'do the usg', 'USG'),
                    (3, 'ekg is needed', 'EKG');
 
-insert into visit (id, description, time, doctor_id, medical_treatment_id, patient_id)
+insert into visit (id, description, time, doctor_id, medical_treatment_id, patient_id,version)
             values (1, 'the visit was a visit', '2022-09-09 11:00:00',
-            (SELECT id FROM DOCTOR WHERE id = 1), 1, 1),
+            (SELECT id FROM DOCTOR WHERE id = 1), 1, 1,1),
             (2, 'the visit was a visit number 2', '2010-09-09 11:00:00',
-            (SELECT id FROM DOCTOR WHERE id = 2), 2, 3),
+            (SELECT id FROM DOCTOR WHERE id = 2), 2, 3,1),
             (3, 'the visit was a visit number 3', '2021-09-09 11:00:00',
-            (SELECT id FROM DOCTOR WHERE id = 3), 3, 4),
+            (SELECT id FROM DOCTOR WHERE id = 3), 3, 4,1),
             (4, 'the visit was a visit number 4', '2000-09-09 11:00:00',
-            (SELECT id FROM DOCTOR WHERE id = 4), 1, 6),
+            (SELECT id FROM DOCTOR WHERE id = 4), 1, 6,1),
             (5, 'the visit was a visit number 5', '1999-09-09 11:00:00',
-            (SELECT id FROM DOCTOR WHERE id = 5), 2,2);
+            (SELECT id FROM DOCTOR WHERE id = 5), 2,2,1);
