@@ -81,10 +81,8 @@ public class PatientDTest {
     public void shouldFindPatientWithAllergy() {
         List<PatientEntity> patients = patientDao.findPatientsWithAllergy();
 
-        // Assert that the result is not null
         assertNotNull(patients);
 
-        // Assert that the expected number of patients with allergies is returned (change the number 5 as per your expected result)
         assertEquals(2, patients.size());
     }
 

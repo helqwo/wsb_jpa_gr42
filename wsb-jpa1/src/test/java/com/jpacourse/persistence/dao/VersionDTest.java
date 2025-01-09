@@ -17,6 +17,8 @@ import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import static org.junit.Assert.assertThrows;
+
+import javax.persistence.LockModeType;
 import javax.persistence.OptimisticLockException;
 import static org.junit.Assert.assertEquals;
 
@@ -32,7 +34,7 @@ public class VersionDTest {
     private VisitDao visitDao;
 
     @Test
-    public void testOptimisticLocking() {
+    public void shouldTestOptimisticLocking() {
 
 
         PatientEntity patient = new PatientEntity();
@@ -43,6 +45,7 @@ public class VersionDTest {
         patient.setPatientNumber("89");
         patient.setTelephoneNumber("987654987");
         entityManager.persist(patient);
+        entityManager.flush();
 
 
         VisitEntity visit = new VisitEntity();
@@ -52,31 +55,28 @@ public class VersionDTest {
         visit.setPatient(patient);
         visitDao.save(visit);
 
-
-        entityManager.flush();
-        entityManager.clear();
-
-
         VisitEntity visitInTransaction1 = entityManager.find(VisitEntity.class, visit.getId());
         VisitEntity visitInTransaction2 = entityManager.find(VisitEntity.class, visit.getId());
-
-
+        entityManager.clear();
         visitInTransaction1.setDescription("Updated by Transaction 1");
+        entityManager.merge(visitInTransaction1);
+        entityManager.flush();
 
 
         var versionBeforeSave1 = visitInTransaction1.getVersion();
         assertEquals("Version should be 0", 0, versionBeforeSave1.intValue());
 
 
-        visitDao.update(visitInTransaction1);
-        entityManager.flush();
-
-
         visitInTransaction2.setDescription("Updated by Transaction 2");
 
 
         var versionBeforeSave2 = visitInTransaction2.getVersion();
-        assertEquals("Version should be 1 before save", 1, versionBeforeSave2.intValue());
+        assertEquals("Version should be 1 before save", 0, versionBeforeSave2.intValue());
 
+        assertThrows(OptimisticLockException.class, () -> {
+            entityManager.merge(visitInTransaction2);
+            entityManager.flush();
+        });
+    }
 
-    }}
+    }

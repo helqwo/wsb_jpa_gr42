@@ -21,7 +21,6 @@ public class AddressDaoTest
     @Transactional
     @Test
     public void testShouldFindAddressById() {
-        // given
         // when
         AddressEntity addressEntity = addressDao.findOne(1L);
         // then
